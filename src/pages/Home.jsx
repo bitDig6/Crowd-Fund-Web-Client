@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Banner from '../components/Banner';
 import RunningCampaign from '../components/RunningCampaign';
 import About from '../components/About';
@@ -6,9 +5,7 @@ import Awards from '../components/Awards';
 import { useLoaderData } from 'react-router';
 
 const Home = () => {
-    const loadedCampaigns = useLoaderData();
-    const [campaigns, setCampaigns] = useState(loadedCampaigns);
-
+    const campaigns = useLoaderData();
 
     return (
         <div className='min-h-dvh'>
