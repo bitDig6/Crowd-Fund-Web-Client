@@ -10,7 +10,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader: () => fetch('https://crowd-fund-web-app-server.vercel.app/runningCampaigns')
             }
         ]
     }
