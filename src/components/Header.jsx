@@ -1,12 +1,12 @@
-// import React, { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import logoImg from '../assets/logo.png';
 import userImg from '../assets/user.png';
-// import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../contexts/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Header = () => {
-    // const userInfo = useContext(AuthContext);
-    // console.log(userInfo);
+    const { user, setUser, signOutUser } = useContext(AuthContext);
 
     const navigationLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
@@ -15,6 +15,16 @@ const Header = () => {
         <li><NavLink to="/">My Campaign</NavLink></li>
         <li><NavLink to="/">My Donations</NavLink></li>
     </>
+
+    const handleLogOut = () => {
+        signOutUser()
+            .then( () => {
+                
+                setUser(null);
+            }).catch(error => {
+                toast(error);
+            })
+    }
 
     return (
         <div className="navbar bg-pink-500 lg:px-10 lg:pt-4">
@@ -42,13 +52,34 @@ const Header = () => {
             </div>
 
             <div className="navbar-end hidden lg:flex">
-                <Link className='sm:btn-xs md:btn-md btn mr-3'>
-                    Login
-                </Link>
+                {
+                    user?.displayName ?                         
+                        <div className="dropdown dropdown-bottom dropdown-end">
+                            <div tabIndex={0} role="button" className="avatar rounded-full border-2 border-violet-600 cursor-pointer">
+                                <div className="w-12 rounded-xl">
+                                    <img className='w-full rounded-full' src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                <li className='mt-1 text-center font-semibold'>
+                                    {user.displayName}
+                                </li>
+                                <li>
+                                    <button onClick={handleLogOut} className="btn btn-ghost">Logout</button>
+                                </li>
+                            </ul>
+                        </div>
+                        :
+                        <>
+                            <Link to='/login' className='btn sm:btn-xs md:btn-md mr-3'>
+                                Login
+                            </Link>
 
-                <Link className='sm:btn-xs md:btn-md btn'>
-                    Register
-                </Link>
+                            <Link to='/register' className='btn sm:btn-xs md:btn-md'>
+                                Register
+                            </Link>
+                        </>
+                }
             </div>
 
             <div className='navbar-end lg:hidden'>
@@ -57,20 +88,26 @@ const Header = () => {
                         <img className='w-10' src={userImg} alt="user-icon" />
                     </div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                        <li>
-                            <Link className='btn sm:btn-xs md:btn-md'>
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className='btn sm:btn-xs md:btn-md'>
-                                Register
-                            </Link>
-                        </li>
+                        {
+                            user?
+                                user?.displayName
+                                : <>
+                                    <li>
+                                        <Link to='/login' className='btn sm:btn-xs md:btn-md'>
+                                            Login
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to='/register' className='btn sm:btn-xs md:btn-md'>
+                                            Register
+                                        </Link>
+                                    </li>
+                                </>
+                        }
                     </ul>
                 </div>
             </div>
-
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
