@@ -1,5 +1,5 @@
 import React, { createRef, useState, useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,8 +7,9 @@ import Swal from 'sweetalert2';
 const Register = () => {
     const { setUser, createUser, signInUserWithGoogle, updateUserProfile } = useContext(AuthContext);
 
+    const navigate = useNavigate();
     const [seePassword, setSeePassword] = useState(false);
-    const[error, setError] = useState(null)
+    const[error, setError] = useState(null);
 
     const nameRef = createRef();
     const photoRef = createRef();
@@ -50,7 +51,8 @@ const Register = () => {
                             text: 'You have registered successfully',
                             icon: 'success',
                             confirmButtonText: 'Ok'
-                          })
+                          });
+                          navigate('/');
                     }).catch(error => {
                         setError(error);
                     })
@@ -68,7 +70,8 @@ const Register = () => {
                     text: 'You have registered successfully',
                     icon: 'success',
                     confirmButtonText: 'Ok'
-                  })
+                  });
+                  navigate('/');
             }).catch(error => {
                 setError(error);
             })
@@ -80,18 +83,17 @@ const Register = () => {
             <div className="card bg-pink-200 w-4/5 lg:w-1/2 mx-auto shadow-2xl">
                 <div className="card-body">
                     <h1 className='text-3xl text-center font-bold text-pink-600'>Register Now!</h1>
-                    <form onSubmit={handleRegister} className="fieldset relative">
-
-                        <label className="fieldset-label">Name</label>
+                    <form onSubmit={handleRegister} className="fieldset relative space-y-2">
+                        <label className="fieldset-label text-black">Name</label>
                         <input type="text" ref={nameRef} className="input w-full" placeholder="Name" required autoComplete='off' />
 
-                        <label className="fieldset-label">Photo URL</label>
+                        <label className="fieldset-label text-black">Photo URL</label>
                         <input type="text" ref={photoRef} className="input w-full" placeholder="Photo URL" required autoComplete='off' />
 
-                        <label className="fieldset-label">Email</label>
+                        <label className="fieldset-label text-black">Email</label>
                         <input type="email" ref={emailRef} className="input w-full" placeholder="Email" required autoComplete='off' />
 
-                        <label className="fieldset-label">Password</label>
+                        <label className="fieldset-label text-black">Password</label>
                         <input type={
                             seePassword ? "text" : "password"
                         } ref={passwordRef} className="input w-full" placeholder="Password" required autoComplete='off' />

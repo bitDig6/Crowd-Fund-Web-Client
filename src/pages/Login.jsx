@@ -1,5 +1,5 @@
 import React, { createRef, useState, useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../contexts/AuthContext';
 import Swal from 'sweetalert2';
@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 const Login = () => {
     const { signInUser, signInUserWithGoogle, setUser } = useContext(AuthContext);
     const [seePassword, setSeePassword] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
 
     const emailRef = createRef();
@@ -26,7 +28,12 @@ const Login = () => {
                     text: 'You have logged in successfully',
                     icon: 'success',
                     confirmButtonText: 'Ok'
-                })
+                });
+                if(location.state){
+                    navigate(location.state);
+                }else{
+                    navigate('/');
+                }
             }).catch(error => {
 
                 setError(error);
@@ -55,12 +62,11 @@ const Login = () => {
             <div className="card bg-pink-200 w-4/5 lg:w-1/2 mx-auto shadow-2xl">
                 <div className="card-body">
                     <h1 className='text-3xl text-center font-bold text-pink-600'>Login</h1>
-                    <form onSubmit={handleLogin} className="fieldset relative">
-
-                        <label className="fieldset-label">Email</label>
+                    <form onSubmit={handleLogin} className="fieldset relative space-y-2">
+                        <label className="fieldset-label text-black">Email</label>
                         <input type="email" ref={emailRef} className="input w-full" placeholder="Email" required autoComplete='off' />
 
-                        <label className="fieldset-label">Password</label>
+                        <label className="fieldset-label text-black">Password</label>
                         <input type={
                             seePassword ? "text" : "password"
                         } ref={passwordRef} className="input w-full" placeholder="Password" required autoComplete='off' />
