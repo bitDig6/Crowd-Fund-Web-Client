@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const RunningCampaign = ({ campaign }) => {
-    const {_id, title, description, image, deadline} = campaign;
+const RunningCampaign = ({ runningCampaign }) => {
+    const {_id, title, description, image, deadline} = runningCampaign;
 
 
     return (
@@ -18,7 +18,7 @@ const RunningCampaign = ({ campaign }) => {
                 <p className='font-semibold text-blue-700'>{description}</p>
                 <p className='font-semibold text-blue-700'>Deadline: {deadline}</p>
                 <div className="mt-3 flex flex-col justify-center card-actions">
-                    <Link to={`/campaigns/${_id}`} className="w-full btn btn-secondary rounded-full">See More</Link>
+                    <Link to={`/runningCampaigns/${_id}`} className="w-full btn btn-secondary rounded-full">See More</Link>
                 </div>
             </div>
         </div>

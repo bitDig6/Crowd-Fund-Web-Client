@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../contexts/AuthContext';
 import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
     const { signInUser, signInUserWithGoogle, setUser } = useContext(AuthContext);
@@ -35,8 +36,8 @@ const Login = () => {
                     navigate('/');
                 }
             }).catch(error => {
-
                 setError(error);
+                toast(error);
             })
         form.reset();
     }
@@ -88,6 +89,7 @@ const Login = () => {
                     <button onClick={handleSignInWithGoogle} className='btn btn-secondary'><FaGoogle></FaGoogle>Login with Google</button>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

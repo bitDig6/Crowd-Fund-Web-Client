@@ -5,7 +5,7 @@ import Awards from '../components/Awards';
 import { useLoaderData } from 'react-router';
 
 const Home = () => {
-    const campaigns = useLoaderData();
+    const runningCampaigns = useLoaderData();
 
     return (
         <div className='min-h-dvh'>
@@ -14,10 +14,7 @@ const Home = () => {
                 <h3 className='text-4xl font-bold text-center text-pink-500 mb-10'>Our Running Campaigns</h3>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-2'>
                     {
-                        campaigns.map(campaign => <RunningCampaign
-                            key={campaign._id}
-                            campaign={campaign}>
-                        </RunningCampaign>)
+                        runningCampaigns.map( runningCampaign => <RunningCampaign key={runningCampaign._id} runningCampaign={runningCampaign}></RunningCampaign>)
                     }
                 </div>
             </section>

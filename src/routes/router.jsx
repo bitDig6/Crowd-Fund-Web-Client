@@ -10,6 +10,7 @@ import AllCampaigns from "../pages/AllCampaigns";
 import MyCampaign from "../pages/MyCampaign";
 import MyDonations from "../pages/MyDonations";
 import ErrorPage from "../pages/ErrorPage";
+import Details from "../pages/Details";
 
 
 const router = createBrowserRouter([
@@ -21,12 +22,12 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('https://crowd-fund-web-app-server.vercel.app/campaigns')
+                loader: () => fetch('https://crowd-fund-web-app-server.vercel.app/runningCampaigns')
             },
             {
-                path: '/campaigns/:id',
+                path: '/runningCampaigns/:id',
                 element: <PrivateRoute><CampaignDetails></CampaignDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`https://crowd-fund-web-app-server.vercel.app/campaigns/${params.id}`)
+                loader: ({params}) => fetch(`https://crowd-fund-web-app-server.vercel.app/runningCampaigns/${params.id}`)
             },
             {
                 path: '/login',
@@ -42,7 +43,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/campaigns',
-                element: <AllCampaigns></AllCampaigns>
+                element: <AllCampaigns></AllCampaigns>,
+                loader: () => fetch('https://crowd-fund-web-app-server.vercel.app/campaigns')
+            },
+            {
+                path: '/campaigns/:id',
+                element: <PrivateRoute><Details></Details></PrivateRoute>
             },
             {
                 path: '/myCampaigns',
