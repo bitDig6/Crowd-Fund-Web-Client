@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
 const AllCampaigns = () => {
     const loadedCampaigns = useLoaderData();
@@ -7,13 +7,13 @@ const AllCampaigns = () => {
     return (
         <div className='my-12 min-h-screen'>
             <h2 className='text-4xl font-bold text-center text-pink-500 mb-10'>All Campaigns</h2>
+
             <div className="w-4/5 mx-auto overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Thumbnail</th>
                             <th>Title</th>
                             <th>Deadline</th>
                             <th>Added By</th>
@@ -30,8 +30,9 @@ const AllCampaigns = () => {
                                 <td>{loadedCampaign.addedBy}</td>
                                 {/* <td></td> */}
                                 <td>
-                                    {/* this will be link to see details */}
-                                    <button className='btn btn-sm md:btn-md btn-primary'>See More</button>
+                                    <Link to={`/campaigns/${loadedCampaign._id}`} className='btn btn-sm md:btn-md btn-primary'>
+                                        See More
+                                    </Link>
                                 </td>
                             </tr>)
                         }

@@ -11,15 +11,15 @@ const Header = () => {
     const navigationLinks = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/campaigns">All Campaign</NavLink></li>
-        { user && <li><NavLink to="/addCampaign">Add New Campaign</NavLink></li> }
-        { user && <li><NavLink to="/myCampaigns">My Campaign</NavLink></li>}
+        {user && <li><NavLink to="/addCampaign">Add New Campaign</NavLink></li>}
+        {user && <li><NavLink to="/myCampaigns">My Campaign</NavLink></li>}
         {user && <li><NavLink to="/myDonations">My Donations</NavLink></li>}
     </>
 
     const handleLogOut = () => {
         signOutUser()
-            .then( () => {
-                
+            .then(() => {
+
                 setUser(null);
             }).catch(error => {
                 toast(error);
@@ -53,7 +53,7 @@ const Header = () => {
 
             <div className="navbar-end hidden lg:flex">
                 {
-                    user?.displayName ?                         
+                    user?.displayName ?
                         <div className="dropdown dropdown-bottom dropdown-end">
                             <div tabIndex={0} role="button" className="avatar rounded-full border-2 border-violet-600 cursor-pointer">
                                 <div className="w-12 rounded-xl">
@@ -85,12 +85,28 @@ const Header = () => {
             <div className='navbar-end lg:hidden'>
                 <div className='dropdown dropdown-bottom dropdown-end'>
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle m-1 ">
-                        <img className='w-10' src={userImg} alt="user-icon" />
+                        {
+                            user?.photoURL ?
+                                <>
+                                    <div className='avatar'>
+                                        <div className='w-10 rounded-full'>
+                                            <img src={user?.photoURL} alt="user photo"></img>
+                                        </div>
+                                    </div>
+                                </>
+                                :
+                                <img className='w-10' src={userImg} alt="user-icon" />
+                        }
                     </div>
                     <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
                         {
-                            user?
-                                user?.displayName
+                            user?.displayName ?
+                                <>
+                                    <li className='mt-1 text-center font-semibold'>{user?.displayName}</li>
+                                    <li>
+                                        <button onClick={handleLogOut} className="btn btn-ghost">Logout</button>
+                                    </li>
+                                </>
                                 : <>
                                     <li>
                                         <Link to='/login' className='btn sm:btn-xs md:btn-md'>

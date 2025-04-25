@@ -36,8 +36,8 @@ const Login = () => {
                     navigate('/');
                 }
             }).catch(error => {
-                setError(error);
-                toast(error);
+                setError(error.message);
+                toast(error.message);
             })
         form.reset();
     }
@@ -54,7 +54,8 @@ const Login = () => {
                 })
 
             }).catch(error => {
-                setError(error);
+                setError(error.message);
+                toast(error.message);
             })
     }
 
@@ -80,8 +81,8 @@ const Login = () => {
                     </form>
                     {
                         seePassword ?
-                            <FaEyeSlash onClick={() => setSeePassword(!seePassword)} className='absolute top-44 right-10 z-20 cursor-pointer'></FaEyeSlash>
-                            : <FaEye onClick={() => setSeePassword(!seePassword)} className='absolute top-44 right-10 z-20 cursor-pointer'></FaEye>
+                            <FaEyeSlash onClick={() => setSeePassword(!seePassword)} className='absolute top-[12.75rem] right-10 z-20 cursor-pointer'></FaEyeSlash>
+                            : <FaEye onClick={() => setSeePassword(!seePassword)} className='absolute top-[12.75rem] right-10 z-20 cursor-pointer'></FaEye>
                     }
                     <p className='text-black '>Don't have an account? <Link className='hover:text-blue-700 underline underline-offset-4' to='/register'>Register Now!</Link></p>
 

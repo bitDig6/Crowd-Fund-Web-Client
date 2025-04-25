@@ -35,7 +35,7 @@ const Register = () => {
         
         createUser(email, password)
             .then((res) => {  
-                const user = res.user;  
+                const user = res.user;
                 
                 const userNewInfo = {
                     displayName: name,
@@ -54,10 +54,12 @@ const Register = () => {
                           });
                           navigate('/');
                     }).catch(error => {
-                        setError(error);
+                        setError(error.message);
+                        toast(error.message)
                     })
             }).catch(error => {
-                setError(error);
+                setError(error.message);
+                toast(error.message);
             } )
             form.reset();
     }
@@ -105,8 +107,8 @@ const Register = () => {
                     </form>
                     {
                         seePassword ?
-                        <FaEyeSlash onClick={() => setSeePassword(!seePassword)} className='absolute top-80 right-16 z-20 cursor-pointer'></FaEyeSlash>
-                        : <FaEye onClick={() => setSeePassword(!seePassword)} className='absolute top-80 right-16 z-20 cursor-pointer'></FaEye>   
+                        <FaEyeSlash onClick={() => setSeePassword(!seePassword)} className='absolute top-[23.5rem] right-16 z-20 cursor-pointer'></FaEyeSlash>
+                        : <FaEye onClick={() => setSeePassword(!seePassword)} className='absolute top-[23.5rem] right-16 z-20 cursor-pointer'></FaEye>   
                     }
                     <p className='text-black '>Already have an account? <Link className='hover:text-blue-700 underline underline-offset-4' to='/login'>Login Now!</Link></p>
 
