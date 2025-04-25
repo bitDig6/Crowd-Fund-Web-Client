@@ -52,7 +52,7 @@ const router = createBrowserRouter([
                 loader: ({params}) => fetch(`https://crowd-fund-web-app-server.vercel.app/campaigns/${params.id}`)
             },
             {
-                path: '/myCampaigns',
+                path: '/myCampaign',
                 element: <PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>
             },
             {

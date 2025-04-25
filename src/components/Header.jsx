@@ -54,7 +54,7 @@ const Header = () => {
             <div className="navbar-end hidden lg:flex">
                 {
                     user?.displayName ?
-                        <div className="dropdown dropdown-bottom dropdown-end">
+                        <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
                             <div tabIndex={0} role="button" className="avatar rounded-full border-2 border-violet-600 cursor-pointer">
                                 <div className="w-12 rounded-xl">
                                     <img className='w-full rounded-full' src={user?.photoURL} />

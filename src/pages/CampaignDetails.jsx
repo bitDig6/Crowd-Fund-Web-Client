@@ -1,10 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
+import { AuthContext } from '../contexts/AuthContext';
+import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CampaignDetails = () => {
     const loadedDetails = useLoaderData();
-    // const details = loadedDetails;
+    const { user } = useContext(AuthContext);
     const {title, image, description, details, category,deadline, location} = loadedDetails;
+
+    const handleDonation = () => {
+            const donorName = user.displayName;
+            const donorEmail = user.email;
+    
+            const newDonation = {
+                donorName,
+                donorEmail,
+                title,
+                thumbnail: image,
+                description,
+                type: category,
+                deadline,
+                addedBy: 'Admin'
+            }
+    
+            console.log(newDonation);
+    
+            fetch('https://crowd-fund-web-app-server.vercel.app/donations', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(newDonation)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: 'Donation Successful!',
+                            text: 'You have donated to this campaign successfully',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
+                }).catch(error => {
+                    toast(error.message);
+                })
+        }
 
     return (
         <div className='w-4/5 mx-auto my-20'>
@@ -22,9 +65,10 @@ const CampaignDetails = () => {
                     <p><span className='text-pink-600'>Category: </span>{category}</p>
                     <p><span className='text-pink-600'>Deadline: </span>{deadline}</p>
                     <p><span className='text-pink-600'>Location: </span>{location}</p>
-                    <button className='btn btn-secondary w-full mt-2'>Donate</button>
+                    <button onClick={handleDonation} className='btn btn-secondary w-full mt-2'>Donate</button>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

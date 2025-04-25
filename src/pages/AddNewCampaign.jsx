@@ -49,7 +49,7 @@ const AddNewCampaign = () => {
                 }
             })
             .catch(error => {
-                toast(error);
+                toast(error.message);
             })
 
             form.reset();
