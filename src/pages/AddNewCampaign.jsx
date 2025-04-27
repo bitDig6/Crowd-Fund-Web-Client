@@ -38,7 +38,6 @@ const AddNewCampaign = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Added Successfully!',
@@ -83,6 +82,7 @@ const AddNewCampaign = () => {
                             <option>Education Support</option>
                             <option>Entrepreneurship</option>
                             <option>Game Development</option>
+                            <option>Entertainment Industry</option>
                         </select>
 
                         <label className="fieldset-label text-black">Description</label>

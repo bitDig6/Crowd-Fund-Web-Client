@@ -11,6 +11,7 @@ import MyCampaign from "../pages/MyCampaign";
 import MyDonations from "../pages/MyDonations";
 import ErrorPage from "../pages/ErrorPage";
 import Details from "../pages/Details";
+import UpdateCampaign from "../pages/UpdateCampaign";
 
 
 const router = createBrowserRouter([
@@ -53,11 +54,17 @@ const router = createBrowserRouter([
             },
             {
                 path: '/myCampaign',
-                element: <PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>
+                element: <PrivateRoute><MyCampaign></MyCampaign></PrivateRoute>,
+                loader: () => fetch('https://crowd-fund-web-app-server.vercel.app/campaigns')
             },
             {
                 path: '/myDonations',
                 element: <PrivateRoute><MyDonations></MyDonations></PrivateRoute>
+            },
+            {
+                path: '/updateCampaign/:id',
+                element: <UpdateCampaign></UpdateCampaign>,
+                loader: ({params}) => fetch(`https://crowd-fund-web-app-server.vercel.app/campaigns/${params.id}`)
             }
         ]
     }

@@ -12,7 +12,7 @@ const Header = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/campaigns">All Campaign</NavLink></li>
         {user && <li><NavLink to="/addCampaign">Add New Campaign</NavLink></li>}
-        {user && <li><NavLink to="/myCampaigns">My Campaign</NavLink></li>}
+        {user && <li><NavLink to="/myCampaign">My Campaign</NavLink></li>}
         {user && <li><NavLink to="/myDonations">My Donations</NavLink></li>}
     </>
 
