@@ -27,7 +27,6 @@ const AddNewCampaign = () => {
             deadline,
             addedBy: name
         };
-        console.log(newCampaign);
 
         fetch('https://crowd-fund-web-app-server.vercel.app/campaigns', {
             method: 'POST',

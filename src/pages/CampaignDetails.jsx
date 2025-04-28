@@ -24,8 +24,6 @@ const CampaignDetails = () => {
                 addedBy: 'Admin'
             }
     
-            console.log(newDonation);
-    
             fetch('https://crowd-fund-web-app-server.vercel.app/donations', {
                 method: 'POST',
                 headers: {
@@ -35,7 +33,6 @@ const CampaignDetails = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     if (data.insertedId) {
                         Swal.fire({
                             title: 'Donation Successful!',
