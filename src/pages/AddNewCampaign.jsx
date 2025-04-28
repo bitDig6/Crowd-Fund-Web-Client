@@ -47,7 +47,7 @@ const AddNewCampaign = () => {
                 }
             })
             .catch(error => {
-                toast(error.message);
+                toast.error(error.message);
             })
 
             form.reset();
@@ -58,7 +58,7 @@ const AddNewCampaign = () => {
         <div className='lg:w-4/5 mx-auto my-20'>
             <div className="card bg-pink-200 w-4/5 lg:w-1/2 mx-auto shadow-2xl">
                 <div className="card-body">
-                    <h1 className='text-3xl text-center font-bold text-pink-600'>Add New Campaign</h1>
+                    <h1 className='text-3xl text-center font-bold text-pink-600'>Add A New Campaign</h1>
                     <form onSubmit={handleAddCampaign} className="fieldset relative space-y-2">
                         <label className="fieldset-label text-black">Thumbnail URL</label>
                         <input type="text" name="thumb" className="input w-full" placeholder="Thumbnail URL" required autoComplete='off' />

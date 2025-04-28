@@ -37,7 +37,7 @@ const MyCampaign = () => {
                         const newMyCampaigns = myCampaigns.filter(myCampaign => myCampaign._id !== id );
                         setMyCampaigns(newMyCampaigns);
                     }).catch(error => {
-                        toast(error.message);
+                        toast.error(error.message);
                     })
             }
           })

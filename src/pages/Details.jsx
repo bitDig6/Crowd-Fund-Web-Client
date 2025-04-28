@@ -10,6 +10,13 @@ const Details = () => {
     const { addedBy, amount, deadline, description, thumbnail, title, type } = loadedDetails;
 
     const handleDonation = () => {
+        const dateDeadline = new Date(deadline);
+        const currentDate = new Date();
+        if(dateDeadline < currentDate){
+            toast.error('Deadline Finished. You cannot donate to this campaign anymore');
+            return;
+        }
+
         const donorName = user.displayName;
         const donorEmail = user.email;
 
@@ -43,7 +50,7 @@ const Details = () => {
                     });
                 }
             }).catch(error => {
-                toast(error.message);
+                toast.error(error.message);
             })
     }
 

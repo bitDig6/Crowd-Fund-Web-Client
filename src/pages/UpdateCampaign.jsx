@@ -49,7 +49,7 @@ const UpdateCampaign = () => {
                             });
                         }
                     }).catch(error => {
-                        toast(error.message);
+                        toast.error(error.message);
                     })
             }
         })

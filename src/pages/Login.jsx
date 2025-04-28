@@ -37,7 +37,7 @@ const Login = () => {
                 }
             }).catch(error => {
                 setError(error.message);
-                toast(error.message);
+                toast.error(error.message);
             })
         form.reset();
     }
@@ -55,7 +55,7 @@ const Login = () => {
 
             }).catch(error => {
                 setError(error.message);
-                toast(error.message);
+                toast.error(error.message);
             })
     }
 

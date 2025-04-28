@@ -22,7 +22,7 @@ const Header = () => {
 
                 setUser(null);
             }).catch(error => {
-                toast(error);
+                toast.error(error);
             })
     }
 

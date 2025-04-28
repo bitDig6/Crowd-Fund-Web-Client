@@ -55,11 +55,11 @@ const Register = () => {
                           navigate('/');
                     }).catch(error => {
                         setError(error.message);
-                        toast(error.message)
+                        toast.error(error.message)
                     })
             }).catch(error => {
                 setError(error.message);
-                toast(error.message);
+                toast.error(error.message);
             } )
             form.reset();
     }
