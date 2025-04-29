@@ -1,10 +1,12 @@
 import React from 'react';
 import logoImg from '../assets/logo.png';
 import { Link } from 'react-router';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
     return (
-        <footer className="footer sm:footer-horizontal bg-pink-500 text-base-content p-10">
+        <footer className="footer md:footer-horizontal bg-pink-500 text-base-content p-10">
             <aside>
                 <div className='space-y-4'>
                     <Link to='/' className="flex gap-2 justify-center items-center">
@@ -35,11 +37,18 @@ const Footer = () => {
                 <a className="link link-hover">Cookie policy</a>
             </nav>
             <aside>
-                <p>
-                    Follow Us On Social Media
-                    <br />
-                    Providing reliable tech since 1992
-                </p>
+                <h6 className='text-xl font-bold mb-5'>Follow us on Social Media</h6>
+                <div className='flex gap-8 text-3xl'>
+                    <div>
+                        <FaFacebook></FaFacebook>
+                    </div>
+                    <div>
+                       <BsTwitterX></BsTwitterX> 
+                    </div>
+                    <div>
+                        <FaInstagram></FaInstagram>
+                    </div>
+                </div>
             </aside>
         </footer>
     );
