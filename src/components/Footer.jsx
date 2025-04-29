@@ -6,7 +6,8 @@ import { BsTwitterX } from "react-icons/bs";
 
 const Footer = () => {
     return (
-        <footer className="footer md:footer-horizontal bg-pink-500 text-base-content p-10">
+        <div>
+            <footer className="footer md:footer-horizontal bg-pink-500 text-base-content p-10">
             <aside>
                 <div className='space-y-4'>
                     <Link to='/' className="flex gap-2 justify-center items-center">
@@ -50,7 +51,15 @@ const Footer = () => {
                     </div>
                 </div>
             </aside>
+
+            
         </footer>
+        <footer className="footer sm:footer-horizontal footer-center bg-pink-500 text-base-content p-4">
+        <aside>
+          <p>Copyright © {new Date().getFullYear()} - All right reserved by CrowdCube Ltd</p>
+        </aside>
+      </footer>
+        </div>
     );
 };
 
