@@ -4,6 +4,7 @@ import About from '../components/About';
 import Awards from '../components/Awards';
 import { useLoaderData } from 'react-router';
 import { Slide } from 'react-awesome-reveal';
+import Toggle from '../components/Toggle';
 
 const Home = () => {
     const runningCampaigns = useLoaderData();
@@ -11,6 +12,7 @@ const Home = () => {
     return (
         <div className='min-h-dvh'>
             <Banner></Banner>
+            <Toggle></Toggle>
             <section className='w-11/12 mx-auto my-20'>
                 <Slide>
                     <h3 className='text-4xl font-bold text-center text-pink-500 mb-10'>Our Running Campaigns</h3>

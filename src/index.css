@@ -8,3 +8,8 @@
   --font-poppins: Poppins, sans-serif;
   --font-raleway: Raleway, sans-serif;
 }
+
+.dark-theme{
+  background-color: black;
+  color: white;
+}
